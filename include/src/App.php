@@ -1,5 +1,7 @@
 <?php
 
+namespace PluginName;
+
 /**
  * The core plugin class.
  *
@@ -9,11 +11,10 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since 1.0.0
  * @package PluginName
  * @author Your Name <email@example.com>
  */
-class PluginName
+class App
 {
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -69,29 +70,6 @@ class PluginName
      */
     private function loadDependencies()
     {
-        /**
-         * The class responsible for orchestrating the actions and filters of the
-         * core plugin.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/Loader.php';
-
-        /**
-         * The class responsible for defining internationalization functionality
-         * of the plugin.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/Translation.php';
-
-        /**
-         * The class responsible for defining all actions that occur in the admin area.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/Admin.php';
-
-        /**
-         * The class responsible for defining all actions that occur in the public-facing
-         * side of the site.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'public/Public.php';
-
         $this->loader = new Loader();
     }
 
@@ -111,7 +89,7 @@ class PluginName
      */
     private function defineAdminРooks()
     {
-        $pluginAdmin = new PluginAdmin(self::PLUGIN_NAME, $this->getVersion());
+        $pluginAdmin = new Main($this->pluginName, $this->getVersion());
 
         $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueue_styles');
         $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueue_scripts');
@@ -123,7 +101,7 @@ class PluginName
      */
     private function definePublicHooks()
     {
-        $pluginPublic = new PluginPublic(self::PLUGIN_NAME, $this->getVersion());
+        $pluginPublic = new PluginPublic($this->pluginName, $this->getVersion());
 
         $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueue_styles');
         $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueue_scripts');
@@ -143,9 +121,19 @@ class PluginName
      *
      * @return string
      */
-    public function getPluginName()
+    public static function getPluginName()
     {
         return $this->pluginName;
+    }
+
+    /**
+     * Return path to the plugin dir. Unified using from all files
+     *
+     * @return string
+     */
+    public static function getPluginDir()
+    {
+        return PLUGIN_NAME_DIR;
     }
 
     /**

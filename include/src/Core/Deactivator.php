@@ -1,5 +1,7 @@
 <?php
 
+namespace PluginName\Core;
+
 /**
  * Fired during plugin deactivation.
  *

@@ -1,5 +1,9 @@
 <?php
 
+use PluginName\App;
+use PluginName\Core\Activator;
+use PluginName\Core\Deactivator;
+
 /**
  * The plugin bootstrap file
  *
@@ -35,12 +39,21 @@ if (!defined('WPINC')) {
 define('PLUGIN_NAME_VERSION', '1.0.0');
 
 /**
+ * Plugin directory
+ */
+define('PLUGIN_NAME_DIR', plugin_dir_path(__FILE__));
+
+/**
+ * Include composer autoload
+ */
+include PLUGIN_NAME_DIR . 'vendor/autoload.php';
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/Activator.php
  */
 function activatePluginName()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/Activator.php';
     Activator::activate();
 }
 
@@ -50,18 +63,11 @@ function activatePluginName()
  */
 function deactivatePluginName()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/Deactivator.php';
     Deactivator::deactivate();
 }
 
 register_activation_hook(__FILE__, 'activatePluginName');
 register_deactivation_hook(__FILE__, 'deactivatePluginName');
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path(__FILE__) . 'includes/PluginName.php';
 
 /**
  * Begins execution of the plugin.
@@ -72,7 +78,7 @@ require plugin_dir_path(__FILE__) . 'includes/PluginName.php';
  */
 function runPluginName()
 {
-    $plugin = new PluginName();
+    $plugin = new App();
     $plugin->run();
 }
 runPluginName();

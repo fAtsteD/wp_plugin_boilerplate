@@ -1,5 +1,9 @@
 <?php
 
+namespace PluginName\Site;
+
+use PluginName\App;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -9,7 +13,7 @@
  * @package PluginName
  * @author Your Name <email@example.com>
  */
-class PluginPublic
+class Main
 {
     /**
      * The ID of this plugin.
@@ -26,6 +30,13 @@ class PluginPublic
     private $version;
 
     /**
+     * Path to public files for templates, styles, scripts
+     *
+     * @var string
+     */
+    private $publicDir;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @param string $plugin_name
@@ -35,6 +46,7 @@ class PluginPublic
     {
         $this->pluginName = $pluginName;
         $this->version = $version;
+        $this->publicDir = App::getPluginDir() . 'public/';
     }
 
     /**
@@ -42,7 +54,7 @@ class PluginPublic
      */
     public function enqueue_styles()
     {
-        wp_enqueue_style($this->pluginName, plugin_dir_url(__FILE__) . 'css/plugin-name-public.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, $this->publicDir . 'css/plugin-name-public.css', array(), $this->version, 'all');
     }
 
     /**
@@ -50,6 +62,6 @@ class PluginPublic
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script($this->pluginName, plugin_dir_url(__FILE__) . 'js/plugin-name-public.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, $this->publicDir . 'js/plugin-name-public.js', array('jquery'), $this->version, false);
     }
 }

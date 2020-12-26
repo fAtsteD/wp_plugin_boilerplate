@@ -14,10 +14,14 @@ Some special feature:
 - languages - standart folder for languages
 - include - all addtionals that you need:
   - src - source code that loaded from autoload, main code
+    - Core:
+      - Activator - class with static method for activate plugin
+      - Deactivator - class with static method for deactivate plugin
+      - I18n - class for translations module
+      - Loader - unified class for adding filters, hooks, maybe other loading for WP
+      - App - main class for plugin
+    - Site:
+      - Main - main class for public
+    - Admin:
+      - Main - main class for public
   - wp-include - some code that will be loaded in specific time, it is not include in autoload (example: inherited custom class for table in admin panel that loads in special hook in some moment)
-  - files:
-    - Activator - class with static method for activate plugin
-    - Deactivator - class with static method for deactivate plugin
-    - I18n - class for translations module
-    - Loader - unified class for adding filters, hooks, maybe other loading for WP
-    - PluginName - main class for plugin

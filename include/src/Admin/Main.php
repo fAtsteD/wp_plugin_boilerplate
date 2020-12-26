@@ -1,5 +1,9 @@
 <?php
 
+namespace PluginName\Admin;
+
+use PluginName\App;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -26,6 +30,13 @@ class PluginAdmin
     private $version;
 
     /**
+     * Path to admin files for templates, styles, scripts
+     *
+     * @var string
+     */
+    private $adminDir;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @param string $plugin_name
@@ -35,6 +46,7 @@ class PluginAdmin
     {
         $this->pluginName = $pluginName;
         $this->version = $version;
+        $this->adminDir = App::getPluginDir() . 'admin/';
     }
 
     /**
@@ -42,7 +54,7 @@ class PluginAdmin
      */
     public function enqueue_styles()
     {
-        wp_enqueue_style($this->pluginName, plugin_dir_url(__FILE__) . 'css/plugin-name-admin.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, $this->adminDir . 'css/plugin-name-admin.css', array(), $this->version, 'all');
     }
 
     /**
@@ -50,6 +62,6 @@ class PluginAdmin
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script($this->pluginName, plugin_dir_url(__FILE__) . 'js/plugin-name-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, $this->adminDir . 'js/plugin-name-admin.js', array('jquery'), $this->version, false);
     }
 }

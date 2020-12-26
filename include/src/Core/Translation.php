@@ -1,5 +1,9 @@
 <?php
 
+namespace PluginName\Core;
+
+use PluginName\App;
+
 /**
  * Define the internationalization functionality.
  *
@@ -17,7 +21,7 @@ class Translation
     public function loadPluginTextdomain()
     {
         load_plugin_textdomain(
-            PluginName::PLUGIN_NAME,
+            App::getPluginName(),
             false,
             dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
         );

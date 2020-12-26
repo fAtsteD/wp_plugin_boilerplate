@@ -1,5 +1,7 @@
 <?php
 
+namespace PluginName;
+
 /**
  * Fired during plugin activation.
  *
