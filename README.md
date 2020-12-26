@@ -7,6 +7,11 @@ Some special feature:
 - have namespace
 - custom autoloader based on composer uses namespace, name of classes (custom because can be refused folder vendor, some files cannot be autoloaded with plugin)
 
+## Starting using
+
+Rename "PluginName" everywhere in your name of plugin (it uses for namespace, unique path and name).
+Rename main file plugin-name.php and const inside.
+
 ## Structure
 
 - admin - using in admin pagel and all what you need
