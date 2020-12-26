@@ -14,7 +14,7 @@ Some special feature:
 - languages - standart folder for languages
 - include - all addtionals that you need:
   - src - source code that loaded from autoload, main code
-  - reuse - some code that will be loaded in specific time, it is not include in autoload (example: inherited custom class for table in admin panel that loads in special hook in some moment)
+  - wp-include - some code that will be loaded in specific time, it is not include in autoload (example: inherited custom class for table in admin panel that loads in special hook in some moment)
   - files:
     - Activator - class with static method for activate plugin
     - Deactivator - class with static method for deactivate plugin
