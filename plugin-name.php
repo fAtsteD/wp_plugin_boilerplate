@@ -3,6 +3,7 @@
 use PluginName\App;
 use PluginName\Core\Activator;
 use PluginName\Core\Deactivator;
+use PluginName\Core\Uninstaller;
 
 /**
  * The plugin bootstrap file
@@ -66,8 +67,18 @@ function deactivatePluginName()
     Deactivator::deactivate();
 }
 
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/Activator.php
+ */
+function uninstallPluginName()
+{
+    Uninstaller::uninstall();
+}
+
 register_activation_hook(__FILE__, 'activatePluginName');
 register_deactivation_hook(__FILE__, 'deactivatePluginName');
+register_uninstall_hook(__FILE__, 'uninstallPluginName');
 
 /**
  * Begins execution of the plugin.

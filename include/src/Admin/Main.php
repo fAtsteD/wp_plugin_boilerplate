@@ -13,7 +13,7 @@ use PluginName\App;
  * @package PluginName
  * @author Your Name <email@example.com>
  */
-class PluginAdmin
+class Main
 {
     /**
      * The ID of this plugin.
@@ -54,7 +54,7 @@ class PluginAdmin
      */
     public function enqueue_styles()
     {
-        wp_enqueue_style($this->pluginName, $this->adminDir . 'css/plugin-name-admin.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, plugins_url('css/plugin-name-admin.css', $this->adminDir), array(), $this->version, 'all');
     }
 
     /**
@@ -62,6 +62,6 @@ class PluginAdmin
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script($this->pluginName, $this->adminDir . 'js/plugin-name-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, plugins_url('js/plugin-name-admin.js', $this->adminDir), array('jquery'), $this->version, false);
     }
 }

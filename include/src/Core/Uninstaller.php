@@ -3,19 +3,19 @@
 namespace PluginName\Core;
 
 /**
- * Fired during plugin activation.
+ * Fired during plugin uninstalling.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all code necessary to run during the plugin's uninstalletion.
  *
  * @package PluginName
  * @author Your Name <email@example.com>
  */
-class Activator
+class Uninstaller
 {
     /**
      * Method running for activating plugin
      */
-    public static function activate()
+    public static function uninstall()
     {
         $instance = new self();
     }

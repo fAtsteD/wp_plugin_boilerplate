@@ -17,5 +17,6 @@ class Deactivator
      */
     public static function deactivate()
     {
+        $instance = new self();
     }
 }

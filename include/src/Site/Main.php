@@ -46,7 +46,7 @@ class Main
     {
         $this->pluginName = $pluginName;
         $this->version = $version;
-        $this->publicDir = App::getPluginDir() . 'public/';
+        $this->publicDir = App::getPluginDir() . 'site/';
     }
 
     /**
@@ -54,7 +54,7 @@ class Main
      */
     public function enqueue_styles()
     {
-        wp_enqueue_style($this->pluginName, $this->publicDir . 'css/plugin-name-public.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, plugins_url('site/css/plugin-name-public.css', $this->publicDir), array(), $this->version, 'all');
     }
 
     /**
@@ -62,6 +62,6 @@ class Main
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script($this->pluginName, $this->publicDir . 'js/plugin-name-public.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, plugins_url('js/plugin-name-public.js', $this->publicDir), array('jquery'), $this->version, false);
     }
 }
