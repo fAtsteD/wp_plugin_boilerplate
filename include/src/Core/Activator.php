@@ -14,6 +14,8 @@ class Activator
 {
     /**
      * Method running for activating plugin
+     *
+     * @return void
      */
     public static function activate()
     {

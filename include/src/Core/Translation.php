@@ -17,13 +17,15 @@ class Translation
 {
     /**
      * Load the plugin text domain for translation.
+     *
+     * @return void
      */
-    public function loadPluginTextdomain()
+    public function loadPluginTextdomain($pluginDir)
     {
         load_plugin_textdomain(
-            App::getPluginName(),
+            App::PLUGIN_NAME,
             false,
-            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+            $pluginDir . 'languages/'
         );
     }
 }

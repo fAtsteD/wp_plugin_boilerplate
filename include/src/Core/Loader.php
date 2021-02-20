@@ -92,6 +92,8 @@ class Loader
 
     /**
      * Register the filters and actions with WordPress.
+     *
+     * @return void
      */
     public function run()
     {

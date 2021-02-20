@@ -52,6 +52,8 @@ include PLUGIN_NAME_DIR . 'vendor/autoload.php';
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/Activator.php
+ *
+ * @return void
  */
 function activatePluginName()
 {
@@ -61,6 +63,8 @@ function activatePluginName()
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/Deactivator.php
+ *
+ * @return void
  */
 function deactivatePluginName()
 {
@@ -70,6 +74,8 @@ function deactivatePluginName()
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/Activator.php
+ *
+ * @return void
  */
 function uninstallPluginName()
 {
@@ -86,6 +92,8 @@ register_uninstall_hook(__FILE__, 'uninstallPluginName');
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
+ *
+ * @return void
  */
 function runPluginName()
 {

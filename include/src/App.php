@@ -2,6 +2,11 @@
 
 namespace PluginName;
 
+use PluginName\Core\Loader;
+use PluginName\Core\Translation;
+use PluginName\Admin\Main as PluginAdmin;
+use PluginName\Site\Main as PluginPublic;
+
 /**
  * The core plugin class.
  *
@@ -17,25 +22,25 @@ namespace PluginName;
 class App
 {
     /**
-     * The loader that's responsible for maintaining and registering all hooks that power
-     * the plugin.
-     *
-     * @var Loader
-     */
-    private $loader;
-
-    /**
      * The unique identifier of this plugin.
-     * It can be use like unique name for data related to plugin.
+     *
+     * @var string
      */
-    private $pluginName;
+    const PLUGIN_NAME = 'plugin-name';
 
     /**
      * The current version of the plugin.
      *
      * @var string
      */
-    private $version;
+    protected $version;
+
+    /**
+     * Root of plugin
+     *
+     * @var string
+     */
+    protected $pluginDir;
 
     /**
      * Define the core functionality of the plugin.
@@ -51,7 +56,7 @@ class App
         } else {
             $this->version = '1.0.0';
         }
-        $this->pluginName = 'plugin-name';
+        $this->pluginDir = PLUGIN_NAME_DIR;
 
         $this->loadDependencies();
         $this->setLocale();
@@ -67,6 +72,8 @@ class App
      * - Translation - Defines internationalization functionality.
      * - Admin - Defines all hooks for the admin area.
      * - Public - Defines all hooks for the public side of the site.
+     *
+     * @return void
      */
     private function loadDependencies()
     {
@@ -75,36 +82,42 @@ class App
 
     /**
      * Define the locale for this plugin for internationalization.
+     *
+     * @return void
      */
     private function setLocale()
     {
-        $pluginTranslation = new Translation();
+        $pluginTranslation = new Translation($this->getPluginDir());
 
-        $this->loader->addAction('plugins_loaded', $pluginTranslation, 'load_plugin_textdomain');
+        $this->loader->addAction('plugins_loaded', $pluginTranslation, 'loadPluginTextdomain');
     }
 
     /**
      * Register all of the hooks related to the admin area functionality
      * of the plugin.
+     *
+     * @return void
      */
     private function defineAdminРooks()
     {
-        $pluginAdmin = new Main($this->pluginName, $this->getVersion());
+        $pluginAdmin = new PluginAdmin($this->getPluginDir(), $this->getVersion());
 
-        $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueue_styles');
-        $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueue_scripts');
+        $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueueStyles');
+        $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueueScripts');
     }
 
     /**
      * Register all of the hooks related to the public-facing functionality
      * of the plugin.
+     *
+     * @return void
      */
     private function definePublicHooks()
     {
-        $pluginPublic = new PluginPublic($this->pluginName, $this->getVersion());
+        $pluginPublic = new PluginPublic($this->getPluginDir(), $this->getVersion());
 
-        $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueue_styles');
-        $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueue_scripts');
+        $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueueStyles');
+        $this->loader->addAction('wp_enqueue_scripts', $pluginPublic, 'enqueueScripts');
     }
 
     /**
@@ -116,24 +129,13 @@ class App
     }
 
     /**
-     * The name of the plugin used to uniquely identify it within the context of
-     * WordPress and to define internationalization functionality.
-     *
-     * @return string
-     */
-    public static function getPluginName()
-    {
-        return $this->pluginName;
-    }
-
-    /**
      * Return path to the plugin dir. Unified using from all files
      *
      * @return string
      */
-    public static function getPluginDir()
+    public function getPluginDir()
     {
-        return PLUGIN_NAME_DIR;
+        return $this->pluginDir;
     }
 
     /**

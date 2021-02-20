@@ -39,29 +39,33 @@ class Main
     /**
      * Initialize the class and set its properties.
      *
-     * @param string $plugin_name
+     * @param string $pluginDir
      * @param string $version
      */
-    public function __construct($pluginName, $version)
+    public function __construct($pluginDir, $version)
     {
-        $this->pluginName = $pluginName;
+        $this->pluginName = App::PLUGIN_NAME;
         $this->version = $version;
-        $this->publicDir = App::getPluginDir() . 'site/';
+        $this->publicDir = $pluginDir . 'site/';
     }
 
     /**
      * Register the stylesheets for the public-facing side of the site.
+     *
+     * @return void
      */
-    public function enqueue_styles()
+    public function enqueueStyles()
     {
-        wp_enqueue_style($this->pluginName, plugins_url('site/css/plugin-name-public.css', $this->publicDir), array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, plugins_url('site/css/main.min.css', $this->publicDir), array(), $this->version, 'all');
     }
 
     /**
      * Register the JavaScript for the public-facing side of the site.
+     *
+     * @return void
      */
-    public function enqueue_scripts()
+    public function enqueueScripts()
     {
-        wp_enqueue_script($this->pluginName, plugins_url('js/plugin-name-public.js', $this->publicDir), array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, plugins_url('site/js/main.js', $this->publicDir), array('jquery'), $this->version, false);
     }
 }

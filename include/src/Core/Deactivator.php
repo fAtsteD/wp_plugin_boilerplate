@@ -14,6 +14,8 @@ class Deactivator
 {
     /**
      * Method running for deactivating plugin
+     *
+     * @return void
      */
     public static function deactivate()
     {

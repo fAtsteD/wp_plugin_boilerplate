@@ -14,6 +14,8 @@ class Uninstaller
 {
     /**
      * Method running for activating plugin
+     *
+     * @return void
      */
     public static function uninstall()
     {

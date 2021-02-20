@@ -39,29 +39,33 @@ class Main
     /**
      * Initialize the class and set its properties.
      *
-     * @param string $plugin_name
+     * @param string $pluginDir
      * @param string $version
      */
-    public function __construct($pluginName, $version)
+    public function __construct($pluginDir, $version)
     {
-        $this->pluginName = $pluginName;
+        $this->pluginName = App::PLUGIN_NAME;
         $this->version = $version;
-        $this->adminDir = App::getPluginDir() . 'admin/';
+        $this->adminDir = $pluginDir . 'admin/';
     }
 
     /**
      * Register the stylesheets for the admin area.
+     *
+     * @return void
      */
-    public function enqueue_styles()
+    public function enqueueStyles()
     {
-        wp_enqueue_style($this->pluginName, plugins_url('css/plugin-name-admin.css', $this->adminDir), array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, plugins_url('admin/css/main.min.css', $this->adminDir), array(), $this->version, 'all');
     }
 
     /**
      * Register the JavaScript for the admin area.
+     *
+     * @return void
      */
-    public function enqueue_scripts()
+    public function enqueueScripts()
     {
-        wp_enqueue_script($this->pluginName, plugins_url('js/plugin-name-admin.js', $this->adminDir), array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, plugins_url('admin/js/main.js', $this->adminDir), array('jquery'), $this->version, false);
     }
 }
