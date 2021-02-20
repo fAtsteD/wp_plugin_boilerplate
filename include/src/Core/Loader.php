@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginName\Core;
+namespace Boilerplate\Core;
 
 /**
  * Register all actions and filters for the plugin.
@@ -9,7 +9,7 @@ namespace PluginName\Core;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class Loader

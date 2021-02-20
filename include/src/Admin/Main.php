@@ -1,8 +1,8 @@
 <?php
 
-namespace PluginName\Admin;
+namespace Boilerplate\Admin;
 
-use PluginName\App;
+use Boilerplate\App;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -10,7 +10,7 @@ use PluginName\App;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class Main

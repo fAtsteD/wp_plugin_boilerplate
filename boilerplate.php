@@ -1,9 +1,9 @@
 <?php
 
-use PluginName\App;
-use PluginName\Core\Activator;
-use PluginName\Core\Deactivator;
-use PluginName\Core\Uninstaller;
+use Boilerplate\App;
+use Boilerplate\Core\Activator;
+use Boilerplate\Core\Deactivator;
+use Boilerplate\Core\Uninstaller;
 
 /**
  * The plugin bootstrap file
@@ -14,7 +14,7 @@ use PluginName\Core\Uninstaller;
  * that starts the plugin.
  *
  * @since 1.0.0
- * @package PluginName
+ * @package Boilerplate
  *
  * @wordpress-plugin
  * Plugin Name: WordPress Plugin Boilerplate
@@ -35,19 +35,9 @@ if (!defined('WPINC')) {
 }
 
 /**
- * Currently plugin version.
- */
-define('PLUGIN_NAME_VERSION', '1.0.0');
-
-/**
- * Plugin directory
- */
-define('PLUGIN_NAME_DIR', plugin_dir_path(__FILE__));
-
-/**
  * Include composer autoload
  */
-include_once PLUGIN_NAME_DIR . 'vendor/autoload.php';
+include_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
@@ -55,7 +45,7 @@ include_once PLUGIN_NAME_DIR . 'vendor/autoload.php';
  *
  * @return void
  */
-function activatePluginName()
+function activateBoilerplate()
 {
     Activator::activate();
 }
@@ -66,7 +56,7 @@ function activatePluginName()
  *
  * @return void
  */
-function deactivatePluginName()
+function deactivateBoilerplate()
 {
     Deactivator::deactivate();
 }
@@ -77,14 +67,14 @@ function deactivatePluginName()
  *
  * @return void
  */
-function uninstallPluginName()
+function uninstallBoilerplate()
 {
     Uninstaller::uninstall();
 }
 
-register_activation_hook(__FILE__, 'activatePluginName');
-register_deactivation_hook(__FILE__, 'deactivatePluginName');
-register_uninstall_hook(__FILE__, 'uninstallPluginName');
+register_activation_hook(__FILE__, 'activateBoilerplate');
+register_deactivation_hook(__FILE__, 'deactivateBoilerplate');
+register_uninstall_hook(__FILE__, 'uninstallBoilerplate');
 
 /**
  * Begins execution of the plugin.
@@ -95,9 +85,14 @@ register_uninstall_hook(__FILE__, 'uninstallPluginName');
  *
  * @return void
  */
-function runPluginName()
+function runBoilerplate()
 {
-    $plugin = new App();
+    $plugin = new App(
+        [
+            'version' => '1.0.0',
+            'pluginDir' => plugin_dir_path(__FILE__),
+        ]
+    );
     $plugin->run();
 }
-runPluginName();
+runBoilerplate();

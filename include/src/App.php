@@ -1,11 +1,11 @@
 <?php
 
-namespace PluginName;
+namespace Boilerplate;
 
-use PluginName\Core\Loader;
-use PluginName\Core\Translation;
-use PluginName\Admin\Main as PluginAdmin;
-use PluginName\Site\Main as PluginPublic;
+use Boilerplate\Core\Loader;
+use Boilerplate\Core\Translation;
+use Boilerplate\Admin\Main as PluginAdmin;
+use Boilerplate\Site\Main as PluginPublic;
 
 /**
  * The core plugin class.
@@ -16,7 +16,7 @@ use PluginName\Site\Main as PluginPublic;
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class App
@@ -26,7 +26,7 @@ class App
      *
      * @var string
      */
-    const PLUGIN_NAME = 'plugin-name';
+    const PLUGIN_NAME = 'boilerplate';
 
     /**
      * The current version of the plugin.
@@ -48,15 +48,13 @@ class App
      * Set the plugin name and the plugin version that can be used throughout the plugin.
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
+     *
+     * @param array $config
      */
-    public function __construct()
+    public function __construct($config)
     {
-        if (defined('PLUGIN_NAME_VERSION')) {
-            $this->version = PLUGIN_NAME_VERSION;
-        } else {
-            $this->version = '1.0.0';
-        }
-        $this->pluginDir = PLUGIN_NAME_DIR;
+        $this->version = $config['version'];
+        $this->pluginDir = $config['pluginDir'];
 
         $this->loadDependencies();
         $this->setLocale();

@@ -9,8 +9,11 @@ Some special feature:
 
 ## Starting using
 
-Rename "PluginName" everywhere in your name of plugin (it uses for namespace, unique path and name).
-Rename main file plugin-name.php and const inside.
+Rename some words everywhere in your name of plugin (it uses for namespace, unique path and name).
+Type of renaming
+
+-   Boilerplate -> something camelcase, first letter uppercase
+-   boilerplate -> name of main file in plugin and has to be in the App class constant
 
 Run command for generating autoload classes:
 

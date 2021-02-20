@@ -1,8 +1,8 @@
 <?php
 
-namespace PluginName\Site;
+namespace Boilerplate\Site;
 
-use PluginName\App;
+use Boilerplate\App;
 
 /**
  * The public-facing functionality of the plugin.
@@ -10,7 +10,7 @@ use PluginName\App;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class Main

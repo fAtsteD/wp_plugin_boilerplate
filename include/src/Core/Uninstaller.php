@@ -1,13 +1,13 @@
 <?php
 
-namespace PluginName\Core;
+namespace Boilerplate\Core;
 
 /**
  * Fired during plugin uninstalling.
  *
  * This class defines all code necessary to run during the plugin's uninstalletion.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class Uninstaller

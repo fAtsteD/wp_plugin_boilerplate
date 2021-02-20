@@ -1,8 +1,8 @@
 <?php
 
-namespace PluginName\Core;
+namespace Boilerplate\Core;
 
-use PluginName\App;
+use Boilerplate\App;
 
 /**
  * Define the internationalization functionality.
@@ -10,7 +10,7 @@ use PluginName\App;
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @package PluginName
+ * @package Boilerplate
  * @author Your Name <email@example.com>
  */
 class Translation
