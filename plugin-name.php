@@ -47,7 +47,7 @@ define('PLUGIN_NAME_DIR', plugin_dir_path(__FILE__));
 /**
  * Include composer autoload
  */
-include PLUGIN_NAME_DIR . 'vendor/autoload.php';
+include_once PLUGIN_NAME_DIR . 'vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
