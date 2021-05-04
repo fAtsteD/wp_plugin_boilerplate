@@ -3,6 +3,7 @@
 namespace Boilerplate\Admin;
 
 use Boilerplate\App;
+use Boilerplate\Admin\Settings\FactorySettings;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -56,7 +57,7 @@ class Main
      */
     public function enqueueStyles()
     {
-        wp_enqueue_style($this->pluginName, plugins_url('admin/css/main.min.css', $this->adminDir), array(), $this->version, 'all');
+        wp_enqueue_style($this->pluginName, plugins_url('admin/css/admin.min.css', $this->adminDir), array(), $this->version, 'all');
     }
 
     /**
@@ -66,6 +67,51 @@ class Main
      */
     public function enqueueScripts()
     {
-        wp_enqueue_script($this->pluginName, plugins_url('admin/js/main.js', $this->adminDir), array('jquery'), $this->version, false);
+        wp_enqueue_script($this->pluginName, plugins_url('admin/js/admin.js', $this->adminDir), array('jquery'), $this->version, false);
+    }
+
+
+    /**
+     * Add menu to admin panel
+     *
+     * @return void
+     */
+    public function registerPage()
+    {
+        add_menu_page(
+            'QATestLab',
+            'QATestLab',
+            'edit_pages',
+            $this->pluginName,
+            function () {
+                echo '<h2>Choose one of subpages</h2>';
+            },
+            '',
+            81
+        );
+
+        FactorySettings::registerPages($this->pluginName, $this->adminDir);
+    }
+
+    /**
+     * Save settings through ajax query
+     *
+     * @return void
+     */
+    public function saveSettings()
+    {
+        $result = [
+            'status' => 'error',
+        ];
+
+        $settings = FactorySettings::getSettingByFormParam($this->adminDir);
+
+        if (is_user_logged_in()) {
+            $result = [
+                'status' => ($settings->saveSettings() ? 'success' : 'error'),
+            ];
+        }
+
+        wp_send_json($result);
     }
 }

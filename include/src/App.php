@@ -102,6 +102,12 @@ class App
 
         $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueueStyles');
         $this->loader->addAction('admin_enqueue_scripts', $pluginAdmin, 'enqueueScripts');
+
+        // Menus
+        $this->loader->addAction('admin_menu', $pluginAdmin, 'registerPage');
+
+        // AJAXs
+        $this->loader->addAction('wp_ajax_qatestlab_save_settings', $pluginAdmin, 'saveSettings');
     }
 
     /**

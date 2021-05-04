@@ -39,3 +39,12 @@ composer dump-autoload --optimize
         -   Admin:
             -   Main - main class for public
     -   wp-include - some code that will be loaded in specific time, it is not include in autoload (example: inherited custom class for table in admin panel that loads in special hook in some moment)
+
+## Settings
+
+Settings can be saved in the WP standart function (SettingsWP) or with creating addition table in db (SettingsDB).
+You can create any additional settings type from abstract.
+
+Page for editing them from any page from template. Create pages through classes in the Admin namespace with extends abstract class and add them to the factory.
+
+Elements for settings page can be expanded by using interface and existing abstract classes.
